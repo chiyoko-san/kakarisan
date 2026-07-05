@@ -100,10 +100,10 @@ export const store = {
 
 // この端末で作った募集（管理URLのなくしもの防止）
 export function rememberMyEvent(rec) {
-  const list = store.get('bts_my_events', []).filter((e) => e.eventId !== rec.eventId)
+  const list = store.get('kks_my_events', []).filter((e) => e.eventId !== rec.eventId)
   list.unshift(rec)
-  store.set('bts_my_events', list.slice(0, 20))
+  store.set('kks_my_events', list.slice(0, 20))
 }
 export function myEvents() {
-  return store.get('bts_my_events', [])
+  return store.get('kks_my_events', [])
 }

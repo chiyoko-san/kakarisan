@@ -1,4 +1,4 @@
-# ぶんたんさん（仮称）β
+# かかりさん β
 
 係決め・当番・持ち寄り・面談時間枠の「枠に名前を書く」を、登録不要のURLひとつで済ませるサインアップシート。
 「調整さんの係決め版」を目指すMVPです。
@@ -11,40 +11,35 @@
 - LINE共有・QRコード（紙のおたよりに貼る用）・A4印刷ビュー・CSV出力
 - テンプレート: 運動会の係 / 旗振り当番 / 持ち寄り / 個人面談
 
-## 技術スタック
+技術スタック: Vite + React 18 / Firebase Realtime Database + 匿名認証 / GitHub Pages（GitHub Actionsでビルド）
 
-Vite + React 18 / Firebase Realtime Database + 匿名認証 / GitHub Pages（ハッシュルーティング）
+## 公開手順（ローカル環境なし・すべてブラウザで完結）
 
-## セットアップ
+### 1. Firebaseプロジェクトを作る（Firebaseコンソール）
 
-### 1. Firebaseプロジェクトを作る
-
-**ゲーム用（one-button）とは別の新規プロジェクト**を作ってください。保護者名などの個人情報を扱うため、ルールとデータを完全に分離します。
+**ゲーム用など既存のプロジェクトとは別の新規プロジェクト**を作ってください。保護者名などの個人情報を扱うため、ルールとデータを完全に分離します。
 
 1. [Firebaseコンソール](https://console.firebase.google.com/) → プロジェクトを追加
-2. **Realtime Database** を作成（リージョンは asia-southeast1 でOK、**ロックモード**で開始）
-3. **Authentication → ログイン方法 → 匿名** を有効化
-4. Realtime Database → ルール に `database.rules.json` の中身を貼り付けて公開
-5. プロジェクトの設定 → 全般 → マイアプリ → Webアプリを追加し、SDK構成の値を控える
+2. 構築 → **Realtime Database** を作成（ロケーションは Singapore = asia-southeast1 でOK、**ロックモード**で開始）
+3. 構築 → **Authentication** → ログイン方法 → **匿名** を有効化
+4. Realtime Database → **ルール** タブに、このリポジトリの `database.rules.json` の中身を丸ごと貼り付けて「公開」
+5. プロジェクトの設定（歯車）→ 全般 → マイアプリ → **ウェブアプリを追加**（`</>`）→ 表示された `firebaseConfig` の値を控える
 
-### 2. ローカル起動
+### 2. 設定値をリポジトリに貼る（GitHubのWebエディタ）
 
-```bash
-cp .env.example .env   # Firebaseの値を記入
-npm install
-npm run dev
-```
+GitHub上で `src/firebaseConfig.js` を開き、鉛筆アイコンで編集 → 手順1-5の値を貼ってコミット。
 
-### 3. GitHub Pagesへデプロイ
+> WebアプリのAPIキーは公開してよい識別子で、秘密ではありません（防御線はセキュリティルール）。公開リポジトリに置きたくない場合は、代わりに Settings → Secrets and variables → Actions に `VITE_FB_API_KEY` などを登録しても動きます。
 
-```bash
-npm run deploy   # dist を gh-pages ブランチへpush
-```
+### 3. GitHub Pagesのソースを切り替える
 
-リポジトリの Settings → Pages → Branch を `gh-pages` に設定。
-`vite.config.js` の `base: './'` によりサブパス配信でもそのまま動きます。
+リポジトリの **Settings → Pages → Build and deployment → Source** を **「GitHub Actions」** に変更。
 
-> **将来の引っ越しメモ:** LINEで共有したときにイベント名入りのOGPカードを出すには、動的OGP（プリレンダリング）が必要です。GitHub Pagesでは不可能なので、本格運用時は Netlify / Cloudflare Pages への移行を推奨（コードはそのまま動きます）。
+以上です。以降は **mainブランチにコミットするたび**、`.github/workflows/deploy.yml` が自動でビルドして公開します（Actionsタブで進行状況を確認、初回は1〜2分）。
+
+※ 手元で開発したくなったら従来どおり `npm install` → `.env`（`.env.example` 参照）→ `npm run dev` でも動きます。
+
+> **将来の引っ越しメモ:** LINEで共有したときにイベント名入りのOGPカードを出すには動的OGP（プリレンダリング）が必要で、GitHub Pagesでは不可能です。本格運用時は Netlify / Cloudflare Pages への移行を推奨（リポジトリを接続してビルドコマンド `npm run build`・公開ディレクトリ `dist` を指定するだけで、コードはそのまま動きます）。
 
 ## データ構造（Realtime Database）
 
@@ -74,7 +69,6 @@ events/{eventId}/
 - **幽霊枠。** 記入処理が途中で切断されると、人数表示と実記入がずれることが稀にあります。管理ページの「人数を再集計」で修復できます。
 - **取り消しは同一端末・ブラウザのみ。** 匿名認証のuidが端末に紐づくため。間違えた場合は幹事が削除します。
 - **自動削除は未実装。** 役目を終えた募集は手動で枠を削除してください（v2で「締切後90日で自動削除」を予定）。
-- WebのAPIキーは公開前提の識別子です（秘密ではない）。防御線はセキュリティルールです。
 
 ## ロードマップ
 

@@ -79,7 +79,7 @@ export function NotFoundCard() {
 // ---------------- 記入ダイアログ ----------------
 
 export function NameDialog({ slot, busy, onSubmit, onClose }) {
-  const saved = store.get('bts_profile', {})
+  const saved = store.get('kks_profile', {})
   const [name, setName] = useState(saved.name || '')
   const [memo, setMemo] = useState(saved.memo || '')
 
@@ -241,7 +241,7 @@ export function EventView({ eventId, data, uid, isAdmin }) {
     setBusy(true)
     try {
       await joinSlot(eventId, dialogSlot.id, dialogSlot.capacity, { name, memo })
-      store.set('bts_profile', { name, memo })
+      store.set('kks_profile', { name, memo })
       setDialogSlot(null)
     } catch (e) {
       if (e && e.code === 'FULL') {

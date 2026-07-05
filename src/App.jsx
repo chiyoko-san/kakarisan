@@ -40,7 +40,7 @@ export default function App() {
     <div className="app">
       <header className="site-header screen-only">
         <a href="#/" className="brand">
-          <span className="brand-mark">枠</span>
+          <span className="brand-mark">係</span>
           {APP_NAME}
           <span className="beta">β</span>
         </a>
