@@ -1,0 +1,766 @@
+/* =========================================================
+   ぶんたんさん — 「学校のプリント」メタファー
+   方眼紙の上に白い記名シート。名前は青ペン、満員は朱印。
+   ========================================================= */
+
+:root {
+  --paper: #f7f6f0;
+  --card: #fffdf8;
+  --ink: #2a3350;
+  --muted: #7a7f8c;
+  --rule: #e2ddcf;
+  --line: #d8d4c6;
+  --grid: rgba(52, 87, 160, 0.055);
+  --blue: #3457a0;   /* 青ペン */
+  --red: #c8503c;    /* 朱肉 */
+  --green: #3d7d5f;  /* 空きあり・記入導線 */
+  --line-green: #06c755; /* LINEブランド色 */
+  --shadow: 0 1px 3px rgba(42, 51, 80, 0.08), 0 4px 14px rgba(42, 51, 80, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+  font-family: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui,
+    sans-serif;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 12px 14px 56px;
+  flex: 1;
+}
+
+a {
+  color: var(--blue);
+}
+
+/* ---------------- header / footer ---------------- */
+
+.site-header {
+  padding: 14px 16px 6px;
+  max-width: 580px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: inline-block;
+  color: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 5px;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 4px;
+  transform: rotate(-6deg);
+  font-weight: 700;
+}
+
+.beta {
+  font-size: 0.65rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 0 7px;
+  font-weight: 500;
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 20px 16px 28px;
+}
+
+/* ---------------- cards ---------------- */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 18px 16px;
+  margin: 14px 0;
+}
+
+.center-card {
+  text-align: center;
+  padding: 34px 18px;
+}
+
+.page-title {
+  font-size: 1.25rem;
+  margin: 14px 2px 2px;
+}
+
+.section-title {
+  font-size: 1.02rem;
+  margin: 0 0 10px;
+}
+
+.section-title.on-bg {
+  margin: 22px 4px 0;
+}
+
+.prose h1 {
+  font-size: 1.2rem;
+}
+.prose p {
+  font-size: 0.92rem;
+}
+
+/* ---------------- text utilities ---------------- */
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 0.8rem;
+}
+.center {
+  text-align: center;
+}
+.req {
+  font-style: normal;
+  font-size: 0.7rem;
+  color: #fff;
+  background: var(--red);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: 2px;
+}
+
+/* ---------------- buttons ---------------- */
+
+.btn {
+  display: inline-block;
+  border: 1.5px solid transparent;
+  border-radius: 9px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.05s ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn.primary {
+  background: var(--blue);
+  color: #fff;
+}
+.btn.subtle {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn.line {
+  background: var(--line-green);
+  color: #fff;
+}
+.btn.big {
+  padding: 14px 22px;
+  font-size: 1.02rem;
+}
+.btn.small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+.btn.full {
+  display: block;
+  width: 100%;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--blue);
+  text-decoration: underline;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.link-btn.danger {
+  color: var(--red);
+}
+.link-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---------------- 記名欄（このアプリの顔） ---------------- */
+
+.slot-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.slot-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.slot-name {
+  font-size: 1.05rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.slot-count {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.slot-count b {
+  color: var(--ink);
+  font-size: 1.15rem;
+}
+.slot-count .slash {
+  margin: 0 2px;
+}
+.slot-count .unit {
+  margin-left: 2px;
+  font-size: 0.75rem;
+}
+
+.slot-when {
+  margin: 2px 0 0;
+  font-size: 0.86rem;
+  color: var(--ink);
+}
+.slot-note {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+.meter {
+  height: 4px;
+  background: #eeeae0;
+  border-radius: 99px;
+  margin: 10px 0 2px;
+  overflow: hidden;
+}
+.meter-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 99px;
+  transition: width 0.25s ease;
+}
+.meter-fill.full {
+  background: var(--red);
+}
+
+.entry-lines {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+}
+
+.entry-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 2px 7px;
+  border-bottom: 1px solid var(--line);
+}
+.entry-line.empty {
+  border-bottom-style: dashed;
+}
+.entry-line:last-child {
+  border-bottom-color: transparent;
+}
+.entry-line.empty:last-child {
+  border-bottom-color: var(--line);
+}
+
+.line-no {
+  flex: none;
+  width: 1.5em;
+  text-align: right;
+  color: #bcb7a6;
+  font-size: 0.75rem;
+}
+
+.entry-name {
+  color: var(--blue);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.entry-name.ghost {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.entry-memo {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.line-spacer {
+  flex: 1;
+}
+
+.chip {
+  flex: none;
+  font-size: 0.66rem;
+  border-radius: 99px;
+  padding: 1px 7px;
+  font-weight: 700;
+}
+.chip.you {
+  background: #e7eefb;
+  color: var(--blue);
+}
+
+.write-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--green);
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  flex: 1;
+}
+.write-btn:hover {
+  text-decoration: underline;
+}
+.write-btn.as-text {
+  cursor: default;
+}
+.write-btn.as-text:hover {
+  text-decoration: none;
+}
+
+/* 満員の朱印 */
+.stamp {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  color: var(--red);
+  border: 2.5px solid var(--red);
+  border-radius: 7px;
+  padding: 2px 9px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  transform: rotate(-8deg);
+  opacity: 0.88;
+  background: var(--card);
+  animation: stamp-in 0.28s cubic-bezier(0.2, 1.4, 0.4, 1);
+  pointer-events: none;
+}
+.is-full .slot-name {
+  color: var(--muted);
+}
+
+@keyframes stamp-in {
+  from {
+    transform: rotate(-8deg) scale(1.9);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-8deg) scale(1);
+    opacity: 0.88;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp {
+    animation: none;
+  }
+  .meter-fill {
+    transition: none;
+  }
+}
+
+/* ---------------- event head ---------------- */
+
+.event-title {
+  font-size: 1.28rem;
+  margin: 0 0 4px;
+  line-height: 1.45;
+}
+.event-desc {
+  margin: 4px 0;
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+.mode-note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 7px;
+  padding: 3px 10px;
+  margin: 8px 0 0;
+}
+.badge.open {
+  color: var(--green);
+  background: #e9f3ee;
+}
+.badge.closed {
+  color: var(--red);
+  background: #f9e9e6;
+}
+
+/* ---------------- forms ---------------- */
+
+.field {
+  display: block;
+  margin: 12px 0;
+}
+.field > span {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+fieldset.field {
+  border: none;
+  padding: 0;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 12px;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  margin: 6px 0;
+}
+.radio input {
+  width: auto;
+}
+
+.tpl-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+
+.slot-editor {
+  border-top: 1px dashed var(--line);
+  padding: 12px 0;
+}
+.slot-editor.new {
+  background: #fbfaf3;
+  border-radius: 9px;
+  padding: 12px 10px;
+  border: 1px dashed var(--line);
+}
+.slot-editor-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+.slot-editor-row .grow {
+  flex: 1;
+  min-width: 0;
+}
+.slot-editor-row .cap {
+  width: 76px;
+  flex: none;
+  text-align: center;
+}
+.slot-editor-row .unit {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---------------- dialog ---------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 51, 80, 0.42);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 14px;
+  z-index: 50;
+}
+.dialog {
+  width: 100%;
+  max-width: 440px;
+  margin: 0;
+}
+.dialog-title {
+  margin: 0 0 6px;
+  font-size: 1.02rem;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+@media (min-width: 560px) {
+  .overlay {
+    align-items: center;
+  }
+}
+
+/* ---------------- share ---------------- */
+
+.share-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.share-row {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0;
+}
+.share-url {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.qr-block {
+  text-align: center;
+  margin-top: 12px;
+}
+.qr-block img {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px;
+  background: #fff;
+}
+
+/* ---------------- home ---------------- */
+
+.hero {
+  text-align: center;
+  padding: 22px 4px 6px;
+}
+.hero-title {
+  font-size: 1.42rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.hero-sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 18px;
+}
+.demo {
+  text-align: left;
+  max-width: 400px;
+  margin: 26px auto 8px;
+  transform: rotate(-0.6deg);
+}
+
+.steps,
+.features,
+.my-events {
+  margin-top: 30px;
+}
+.step-list {
+  padding-left: 1.3em;
+  margin: 0;
+}
+.step-list li {
+  margin: 10px 0;
+  font-size: 0.94rem;
+}
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.feature-list li {
+  margin: 10px 0;
+  font-size: 0.94rem;
+  padding-left: 1.4em;
+  position: relative;
+}
+.feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+.my-event-list {
+  list-style: none;
+  padding: 0;
+}
+.my-event-list li {
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+/* ---------------- admin ---------------- */
+
+.admin-banner {
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 8px;
+  padding: 7px;
+  margin: 14px 0 4px;
+}
+.warn-card {
+  border-color: var(--red);
+}
+.warn-text {
+  font-size: 0.86rem;
+  color: var(--red);
+  background: #fbf0ee;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.admin-url-note {
+  border-top: 1px dashed var(--line);
+  margin-top: 14px;
+  padding-top: 8px;
+}
+
+/* ---------------- print ---------------- */
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  .screen-only,
+  .site-header,
+  .site-footer {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-sheet h1 {
+    font-size: 18pt;
+    margin: 0 0 6pt;
+  }
+  .print-sheet h2 {
+    font-size: 12pt;
+    margin: 14pt 0 4pt;
+  }
+  .print-desc {
+    font-size: 9.5pt;
+    margin: 2pt 0;
+  }
+  .print-sheet table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .print-sheet td {
+    border-bottom: 1px solid #888;
+    padding: 5pt 4pt;
+    font-size: 10.5pt;
+  }
+  .print-sheet td.no {
+    width: 2em;
+    color: #888;
+    text-align: right;
+    font-size: 9pt;
+  }
+  .print-sheet td.memo {
+    color: #555;
+    font-size: 9.5pt;
+    width: 38%;
+  }
+  .print-sheet td.blank {
+    height: 16pt;
+  }
+}

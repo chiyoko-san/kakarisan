@@ -1,0 +1,108 @@
+{
+  "rules": {
+    "events": {
+      "$eventId": {
+        "meta": {
+          ".read": true,
+          ".write": "auth != null && ((!data.exists() && newData.child('ownerUid').val() === auth.uid) || (data.exists() && (data.child('ownerUid').val() === auth.uid || root.child('events/' + $eventId + '/adminProof/' + auth.uid).exists())))",
+          ".validate": "newData.hasChildren(['title', 'ownerUid', 'createdAt', 'displayMode'])",
+          "title": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 100"
+          },
+          "description": {
+            ".validate": "newData.isString() && newData.val().length <= 2000"
+          },
+          "deadline": {
+            ".validate": "newData.isNumber()"
+          },
+          "locked": {
+            ".validate": "newData.isBoolean()"
+          },
+          "displayMode": {
+            ".validate": "newData.val() === 'public' || newData.val() === 'anonymous'"
+          },
+          "ownerUid": {
+            ".validate": "(!data.exists() && newData.val() === auth.uid) || (data.exists() && newData.val() === data.val())"
+          },
+          "createdAt": {
+            ".validate": "newData.isNumber()"
+          },
+          "$other": {
+            ".validate": false
+          }
+        },
+        "secret": {
+          "adminKey": {
+            ".read": false,
+            ".write": "auth != null && !data.exists()",
+            ".validate": "newData.isString() && newData.val().length >= 16 && newData.val().length <= 64"
+          }
+        },
+        "adminProof": {
+          "$uid": {
+            ".read": "auth != null && auth.uid === $uid",
+            ".write": "auth != null && auth.uid === $uid",
+            ".validate": "newData.isString() && newData.val() === root.child('events/' + $eventId + '/secret/adminKey').val()"
+          }
+        },
+        "slots": {
+          ".read": true,
+          ".write": "auth != null && (root.child('events/' + $eventId + '/meta/ownerUid').val() === auth.uid || root.child('events/' + $eventId + '/adminProof/' + auth.uid).exists())",
+          "$slotId": {
+            ".validate": "newData.hasChildren(['name', 'capacity', 'order'])",
+            "name": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 60"
+            },
+            "when": {
+              ".validate": "newData.isString() && newData.val().length <= 60"
+            },
+            "capacity": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 999"
+            },
+            "note": {
+              ".validate": "newData.isString() && newData.val().length <= 200"
+            },
+            "order": {
+              ".validate": "newData.isNumber()"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "counts": {
+          ".read": true,
+          "$slotId": {
+            ".write": "auth != null",
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= root.child('events/' + $eventId + '/slots/' + $slotId + '/capacity').val() && ((root.child('events/' + $eventId + '/meta/ownerUid').val() === auth.uid || root.child('events/' + $eventId + '/adminProof/' + auth.uid).exists()) || ((!data.exists() ? newData.val() <= 1 : (newData.val() === data.val() + 1 || newData.val() === data.val() - 1 || newData.val() === data.val())) && (newData.val() <= (data.exists() ? data.val() : 0) || (root.child('events/' + $eventId + '/meta/locked').val() !== true && (!root.child('events/' + $eventId + '/meta/deadline').exists() || now <= root.child('events/' + $eventId + '/meta/deadline').val())))))"
+          }
+        },
+        "entries": {
+          ".read": true,
+          "$slotId": {
+            ".write": "auth != null && (root.child('events/' + $eventId + '/meta/ownerUid').val() === auth.uid || root.child('events/' + $eventId + '/adminProof/' + auth.uid).exists())",
+            "$entryId": {
+              ".write": "auth != null && ((!data.exists() && newData.exists() && newData.child('uid').val() === auth.uid && root.child('events/' + $eventId + '/slots/' + $slotId).exists() && root.child('events/' + $eventId + '/meta/locked').val() !== true && (!root.child('events/' + $eventId + '/meta/deadline').exists() || now <= root.child('events/' + $eventId + '/meta/deadline').val())) || (data.exists() && !newData.exists() && data.child('uid').val() === auth.uid))",
+              ".validate": "newData.hasChildren(['name', 'uid', 'createdAt'])",
+              "name": {
+                ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 40"
+              },
+              "memo": {
+                ".validate": "newData.isString() && newData.val().length <= 60"
+              },
+              "uid": {
+                ".validate": "newData.val() === auth.uid"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber()"
+              },
+              "$other": {
+                ".validate": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
