@@ -764,3 +764,81 @@ textarea:focus {
     height: 16pt;
   }
 }
+
+/* ---------------- v2: 名簿・取り消し期限・メンバー別カウント ---------------- */
+
+select {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 12px;
+}
+select:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.badge.plain {
+  color: var(--muted);
+  background: #efede4;
+  margin-left: 6px;
+}
+
+.roster-input {
+  margin-top: 8px;
+}
+.roster-input textarea {
+  margin-bottom: 4px;
+}
+
+.member-board .m-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.member-board .m-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 2px;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.92rem;
+}
+.member-board .m-row:last-child {
+  border-bottom: none;
+}
+.member-board .m-name {
+  flex: 1;
+  min-width: 0;
+}
+.member-board .m-count {
+  font-weight: 700;
+  color: var(--blue);
+  white-space: nowrap;
+}
+.member-board .m-count.zero {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ---------------- v3: 削除／復旧・危険操作 ---------------- */
+
+.btn.danger {
+  background: var(--red);
+  color: #fff;
+}
+.btn.danger:disabled {
+  background: #d9a89d;
+  opacity: 1;
+}
+
+.danger-zone {
+  border-color: var(--red);
+  background: #fdf6f4;
+}
+.danger-zone .section-title {
+  color: var(--red);
+}

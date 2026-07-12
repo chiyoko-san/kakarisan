@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { APP_NAME } from './appConfig.js'
+import { APP_NAME, CONTACT_URL } from './appConfig.js'
 import { configOk } from './firebase.js'
 import Home from './pages/Home.jsx'
 import Create from './pages/Create.jsx'
@@ -57,6 +57,10 @@ export default function App() {
         <p>
           {APP_NAME}は個人運営の無料ツールです（ベータ版）。{' '}
           <a href="#/privacy">プライバシーについて</a>
+          {' ／ '}
+          <a href={CONTACT_URL} target="_blank" rel="noreferrer">
+            お問い合わせ・削除依頼
+          </a>
         </p>
       </footer>
     </div>
@@ -103,7 +107,11 @@ function Privacy() {
         入力された名前は、本名である必要はありません。ニックネームやイニシャルでの記入も可能です（幹事の運用ルールに従ってください）。
       </p>
       <p>
-        役目を終えた募集ページのデータ削除をご希望の場合は、管理ページからすべての枠を削除するか、運営までご連絡ください。
+        役目を終えた募集ページは、管理ページの「この募集を削除する」ボタンからいつでも削除できます。管理URLを紛失してしまった場合や、記入した本人として名前の削除を希望される場合は、
+        <a href={CONTACT_URL} target="_blank" rel="noreferrer">
+          お問い合わせフォーム
+        </a>
+        からご連絡ください。
       </p>
     </div>
   )
