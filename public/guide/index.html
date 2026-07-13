@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ガイド・お役立ちコラム | かかりさん</title>
+    <meta
+      name="description"
+      content="PTA・保護者会の係決めや当番決めに役立つ情報を、かかりさんがまとめたガイド記事の一覧です。旗振り当番、持ち寄り、面談枠の運営のヒントを幹事さん向けに解説しています。"
+    />
+    <link rel="canonical" href="https://kakarisan.com/guide/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ガイド・お役立ちコラム | かかりさん" />
+    <meta
+      property="og:description"
+      content="PTA・保護者会の係決めや当番決めに役立つ情報を、幹事さん向けに解説しています。"
+    />
+    <meta property="og:url" content="https://kakarisan.com/guide/" />
+    <meta property="og:image" content="https://kakarisan.com/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://kakarisan.com/og-image.png" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='8' width='84' height='84' rx='14' fill='none' stroke='%23c8503c' stroke-width='8'/%3E%3Ctext x='50' y='69' font-size='52' text-anchor='middle' fill='%23c8503c' font-family='sans-serif' font-weight='bold'%3E係%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --paper: #f7f6f0;
+        --card: #fffdf8;
+        --ink: #2a3350;
+        --muted: #7a7f8c;
+        --rule: #e2ddcf;
+        --line: #d8d4c6;
+        --blue: #3457a0;
+        --red: #c8503c;
+        --green: #3d7d5f;
+        --grid: rgba(52, 87, 160, 0.055);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background-color: var(--paper);
+        background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+        background-size: 26px 26px;
+        font-family: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
+        font-weight: 500;
+        line-height: 1.75;
+      }
+      .site-header {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 16px 20px 4px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .brand-mark {
+        display: inline-block;
+        color: var(--red);
+        border: 2px solid var(--red);
+        border-radius: 5px;
+        font-size: 0.8rem;
+        line-height: 1;
+        padding: 3px 4px;
+        transform: rotate(-6deg);
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 8px 20px 60px;
+      }
+      .breadcrumb {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin: 12px 0 12px;
+      }
+      .breadcrumb a { color: var(--muted); }
+      h1 {
+        font-size: 1.55rem;
+        line-height: 1.5;
+        margin: 4px 0 6px;
+      }
+      .lead {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin: 6px 0 24px;
+      }
+      .article-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 0;
+      }
+      .article-item {
+        background: var(--card);
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        padding: 20px 22px;
+        margin-bottom: 14px;
+        box-shadow: 0 1px 3px rgba(42, 51, 80, 0.08), 0 4px 14px rgba(42, 51, 80, 0.06);
+        transition: transform 0.08s ease, box-shadow 0.08s ease;
+      }
+      .article-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 6px rgba(42, 51, 80, 0.12), 0 8px 20px rgba(42, 51, 80, 0.08);
+      }
+      .article-item a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+      .article-item .tag {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--blue);
+        background: #e7eefb;
+        border-radius: 99px;
+        padding: 2px 10px;
+        margin-bottom: 8px;
+      }
+      .article-item h2 {
+        font-size: 1.1rem;
+        margin: 4px 0 6px;
+        color: var(--ink);
+      }
+      .article-item p {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .empty-note {
+        background: #fbfaf3;
+        border: 1px dashed var(--rule);
+        border-radius: 12px;
+        padding: 16px 20px;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+      .cta-box {
+        background: #fbfaf3;
+        border: 1px dashed var(--rule);
+        border-radius: 12px;
+        padding: 20px 22px;
+        margin: 28px 0 12px;
+        text-align: center;
+      }
+      .btn {
+        display: inline-block;
+        background: var(--blue);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 12px 22px;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="brand"><span class="brand-mark">係</span>かかりさん</a>
+    </header>
+    <main>
+      <p class="breadcrumb"><a href="/">かかりさん</a> ＞ ガイド</p>
+      <h1>ガイド・お役立ちコラム</h1>
+      <p class="lead">
+        PTA・保護者会の係決めや当番決めに役立つ情報を、幹事さん向けにまとめています。
+      </p>
+
+      <!--
+        新しい記事を追加するときは、この <ul> の中に <li> を1つ追加するだけです。
+        新着記事は上に置くと、訪問者に一番先に読んでもらえます。
+      -->
+      <ul class="article-list">
+        <li class="article-item">
+          <a href="/guide/hatafuri-touban.html">
+            <span class="tag">当番決め</span>
+            <h2>旗振り当番表の作り方【無料テンプレート】PTA・保護者会向け</h2>
+            <p>
+              集計の手間なく、旗振り当番表を作る方法を3ステップで解説。紙とExcelの限界、先着順で埋まる記名シートの作り方、日本のPTAでの工夫まで。
+            </p>
+          </a>
+        </li>
+        <!-- 追加記事はここに <li class="article-item">〜</li> を挿入 -->
+      </ul>
+
+      <p class="empty-note">
+        新しい記事は随時追加していきます。「こんなテーマが読みたい」というリクエストがあれば
+        <a href="/#/privacy">プライバシー</a>
+        ページ経由のお問い合わせフォームからお寄せください。
+      </p>
+
+      <div class="cta-box">
+        <p>まずは実際に募集ページを作ってみたい方はこちらから。</p>
+        <a class="btn" href="/#/new">かかりさんで募集ページを作る</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <a href="/">かかりさん</a> ／ <a href="/#/privacy">プライバシー</a>
+      </p>
+    </footer>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "ガイド・お役立ちコラム",
+        "description": "PTA・保護者会の係決めや当番決めに役立つ情報を、幹事さん向けにまとめたガイド記事の一覧です。",
+        "url": "https://kakarisan.com/guide/",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "かかりさん",
+          "url": "https://kakarisan.com/"
+        }
+      }
+    </script>
+  </body>
+</html>

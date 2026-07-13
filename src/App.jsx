@@ -56,6 +56,8 @@ export default function App() {
       <footer className="site-footer screen-only">
         <p>
           {APP_NAME}は個人運営の無料ツールです（ベータ版）。{' '}
+          <a href="/guide/">お役立ちコラム</a>
+          {' ／ '}
           <a href="#/privacy">プライバシーについて</a>
           {' ／ '}
           <a href={CONTACT_URL} target="_blank" rel="noreferrer">
